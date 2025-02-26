@@ -70,7 +70,7 @@ animation: text_anim 0.3s infinite  alternate;
 stroke-dashoffset: 800px; 
   stroke-dasharray: 0px,800px;
   transition: all 2s;
-  animation: dash_movimiento 15s 1 alternate;
+  animation: dash_movimiento 5s 1 alternate;
     -webkit-animation-timing-function: linear;   
  animation-timing-function: linear;  
 animation-delay: 2s;
@@ -234,6 +234,20 @@ opacity: 1;
 
 	</style>
 
+
+	<script>
+function btn_active(){
+    document.querySelector('.texto_centro').classList.add("active_txt");
+    document.querySelector('.cont_centrar').classList.add("activebtn");
+
+    setTimeout(function(){
+        document.querySelector('.cont_centrar').classList.remove("activebtn");
+        document.querySelector('.cont_centrar').classList.add("activebtn_fin");
+        document.querySelector('.texto_centro').classList.add("op_0");
+    }, 5000);
+}
+</script>
+	
 </head>
 <body>
 
