@@ -15,6 +15,27 @@ html, body {
   overflow: hidden;
 }
 
+.titlediv {
+  position: absolute;
+  top: calc(50% + 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.title1 {
+  margin: 0;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.title2 {
+  margin: 0;
+  font-family: Arial;
+  font-size: 14px;
+}
+	  
 ul {
   width: 100%;
   text-align: center;
@@ -109,6 +130,10 @@ li {
     </div>
   </li>
 </ul>
-	
+<div class="titlediv">
+    <br>
+	<p class="title1">After installation make sure that:</p>
+	<p class="title2">Settings > General > Device Management > Certificate are Trusted</p>
+</div>
 </body>
 </html>
