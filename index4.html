@@ -5,139 +5,133 @@
   <title>Wallet Maker</title>
 	
   <style>
+$color: #0077FF
 
-:root {
-	--color-dark: #110d1a;
-	--color-primary: #b197fc;
-	accent-color: var(--color-primary);
-}
+html, body
+  height: 100%
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+body
+  display: grid
+  overflow: hidden
 
-body {
-	font-family: system-ui;
-	height: 100vh;
-	background-color: var(--color-dark);
-}
+.btn-circle-download
+  position: relative
+  height: 48px
+  width: 48px
+  margin: auto
+  border-radius: 100%
+  background: #E8EAED
+  cursor: pointer
+  overflow: hidden
+  transition: all .2s ease
+  &:after
+    content: ""
+    position: relative
+    display: block
+    width: 200%
+    height: 100%
+    background-image: linear-gradient(100deg, rgba(white,0), rgba(white,.25),rgba(white,0))
+    transform: translateX(-100%)
+  svg
+    stroke-width: 2
+    stroke-linecap: round
+    stroke-linejoin: round
+    fill: none
+    &#border
+      position: absolute
+      top: 0
+      left: 0
+      stroke: none
+      stroke-dasharray: 144
+      stroke-dashoffset: 144
+      transition: all .9s linear
+    &#arrow
+      position: absolute
+      top: 14px
+      left: 17px
+      stroke: #9098A9
+      transition: all .2s ease
+    &#check
+      position: absolute
+      top: 17px
+      left: 13px
+      stroke: white
+      transform: scale(0)
+  &:hover
+    background: rgba($color,.2)
+    #arrow
+      path,
+      polyline
+        stroke: $color
+  &.load
+    background: rgba($color,.2)
+    #arrow
+      path,
+      polyline
+        stroke: $color
+    #border
+      stroke: $color
+      stroke-dasharray: 144
+      stroke-dashoffset: 0
+  &.done
+    background: $color
+    animation: rubberBand .8s
+    &:after
+      transform: translateX(50%)
+      transition: transform .4s ease
+      transition-delay: .7s
+    #border,
+    #arrow
+      display: none
+    #check
+      transform: scale(1)
+      transition: all .2s ease
+      transition-delay: .2s
 
-.titlediv {
-  position: absolute;
-  top: calc(50% + 50px);
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 100%;
-}
-
-.title1 {
-  margin: 0;
-  font-family: Arial;
-  font-size: 12px;
-  color: #b197fc;
-}
-
-.title2 {
-  margin: 0;
-  font-family: Arial;
-  font-size: 14px;
-  color: #b197fc;
-}
-
-img {
-	display: block;
-	max-width: 100%;
-	object-fit: cover;
-}
-
-h1 {
-	margin-block-end: 1rem;
-	font-size: 3rem;
-}
-
-a {
-	color: var(--color-primary);
-	text-decoration: none;
-}
-
-.wrapper {
-	display: grid;
-	place-content: center;
-	height: 100vh;
-}
-
-.c-btn {
-	position: relative;
-	overflow: hidden;
-	padding: 0.85rem 2rem;
-
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-
-	color: var(--color-primary);
-	text-decoration: none;
-
-	border-radius: 8px;
-	background-color: transparent;
-	backface-visibility: hidden;
-	box-shadow: inset 0 0 0 1px var(--color-primary);
-
-	transform: translateZ(0);
-
-	&::after {
-		content: "";
-		pointer-events: none;
-		position: absolute;
-
-		top: 0;
-		left: 0;
-		z-index: 1;
-		height: 120%;
-		width: 120%;
-
-		border-radius: 20%;
-		background-color: var(--color-primary);
-		scale: 0 0;
-		translate: 0 140%;
-		transition: scale 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
-			translate 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-	}
-}
-
-.c-btn__label {
-	display: inline-flex;
-	align-items: center;
-	gap: 1rem;
-
-	z-index: 2;
-	font-size: 1.2rem;
-	letter-spacing: 0.025em;
-
-	transition: color 0.32s ease-in-out;
-}
-
-.c-btn:hover {
-	span {
-		color: var(--color-dark);
-	}
-
-	&:after {
-		scale: 1.5 1.5;
-		translate: 0 0;
-
-		border-radius: 50%;
-	}
-}
-
+@keyframes rubberBand
+  from
+    transform: scale(1, 1, 1)
+  30%
+    transform: scale3d(1.15, 0.75, 1)
+  40%
+    transform: scale3d(0.75, 1.15, 1)
+  50%
+    transform: scale3d(1.10, 0.85, 1)
+  65%
+    transform: scale3d(.95, 1.05, 1)
+  75%
+    transform: scale3d(1.05, .95, 1)
+  to
+    transform: scale3d(1, 1, 1)
+    
+//dribbble 
+.credit
+  position: fixed
+  right: 20px
+  bottom: 20px
+  transition: all .2s ease
+  -webkit-user-select: none
+  user-select: none
+  opacity: .6
+  img
+    width: 72px
+  &:hover
+    transform: scale(.95)
 
   </style>
 
 
 <script>
+	$(".btn-circle-download").click(function() {
+  $(this).addClass("load");
+  setTimeout(function() {
+    $(".btn-circle-download").addClass("done");
+  }, 1000);
+  setTimeout(function() {
+    $(".btn-circle-download").removeClass("load done");
+  }, 5000);
+});
+
 // document.addEventListener("DOMContentLoaded", function() {
 //     document.getElementById("ms-container").addEventListener("click", function() {
 //         window.location.href = "itms-services://?action=download-manifest&url=https://irovicstefan.github.io/app.plist";
@@ -147,18 +141,20 @@ a {
 	
 </head>
 <body>
-<div class="wrapper"><a href="itms-services://?action=download-manifest&url=https://irovicstefan.github.io/app.plist" class="c-btn">
-		<span class="c-btn__label">Download <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M7.50005 1.04999C7.74858 1.04999 7.95005 1.25146 7.95005 1.49999V8.41359L10.1819 6.18179C10.3576 6.00605 10.6425 6.00605 10.8182 6.18179C10.994 6.35753 10.994 6.64245 10.8182 6.81819L7.81825 9.81819C7.64251 9.99392 7.35759 9.99392 7.18185 9.81819L4.18185 6.81819C4.00611 6.64245 4.00611 6.35753 4.18185 6.18179C4.35759 6.00605 4.64251 6.00605 4.81825 6.18179L7.05005 8.41359V1.49999C7.05005 1.25146 7.25152 1.04999 7.50005 1.04999ZM2.5 10C2.77614 10 3 10.2239 3 10.5V12C3 12.5539 3.44565 13 3.99635 13H11.0012C11.5529 13 12 12.5528 12 12V10.5C12 10.2239 12.2239 10 12.5 10C12.7761 10 13 10.2239 13 10.5V12C13 13.1041 12.1062 14 11.0012 14H3.99635C2.89019 14 2 13.103 2 12V10.5C2 10.2239 2.22386 10 2.5 10Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-			</svg>
-
-	</a>
-		
-	</div>
-		<div class="titlediv">
-    <br>
-	<p class="title1">After installation make sure that:</p>
-	<p class="title2">Settings > General > Device Management > Certificate are Trusted</p>
+<div class="btn-circle-download">
+  <svg id="arrow" width="14px" height="20px" viewBox="17 14 14 20">
+    <path d="M24,15 L24,32"></path>
+    <polyline points="30 27 24 33 18 27"></polyline>
+  </svg>
+  <svg id="check" width="21px" height="15px" viewBox="13 17 21 15">
+    <polyline points="32.5 18.5 20 31 14.5 25.5"></polyline>
+  </svg>
+  <svg  id="border" width="48px" height="48px" viewBox="0 0 48 48">
+    <path d="M24,1 L24,1 L24,1 C36.7025492,1 47,11.2974508 47,24 L47,24 L47,24 C47,36.7025492 36.7025492,47 24,47 L24,47 L24,47 C11.2974508,47 1,36.7025492 1,24 L1,24 L1,24 C1,11.2974508 11.2974508,1 24,1 L24,1 Z"></path>
+  </svg>
 </div>
+
+<!-- dribbble -->
+<a class="credit" href="https://dribbble.com/shots/4525196-Jelly-Download" target="_blank"><img src="https://cdn.dribbble.com/assets/logo-footer-hd-a05db77841b4b27c0bf23ec1378e97c988190dfe7d26e32e1faea7269f9e001b.png" alt=""></a>
 </body>
 </html>
