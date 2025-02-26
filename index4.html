@@ -6,219 +6,159 @@
 	
   <style>
 
+:root {
+	--color-dark: #110d1a;
+	--color-primary: #b197fc;
+	accent-color: var(--color-primary);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-#ms-container {
-	width: 100%;
+	font-family: system-ui;
 	height: 100vh;
-	background: #1c9cf2;
+	background-color: var(--color-dark);
 }
 
-.ms-content {
-	position: absolute;
-	width: 200px;
-	height: 200px;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	border: 10px solid #2ea4f2;
-	border-radius: 100%;
+.titlediv {
+  position: absolute;
+  top: calc(50% + 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
 }
 
-.ms-content-inside {
-	width: 100%;
-	height: 100%;
+.title1 {
+  margin: 0;
+  font-family: Arial;
+  font-size: 12px;
+  color: #b197fc;
+}
+
+.title2 {
+  margin: 0;
+  font-family: Arial;
+  font-size: 14px;
+  color: #b197fc;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+h1 {
+	margin-block-end: 1rem;
+	font-size: 3rem;
+}
+
+a {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+.wrapper {
+	display: grid;
+	place-content: center;
+	height: 100vh;
+}
+
+.c-btn {
 	position: relative;
-}
+	overflow: hidden;
+	padding: 0.85rem 2rem;
 
-.ms-line-down-container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	transform: rotate(0deg);
-	transition: transform 0s ease;
-}
-#ms-download {
-	display: none;
-}
-#ms-download:checked ~ .ms-line-down-container {
-	transform: rotate(-360deg);
-	transition: transform 1.5s ease 1.25s;
-}
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
-.ms-line-down {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	bottom: 0;
-	margin: auto;
-	width: 10px;
-	height: 125px;
-	background: #FFFFFF;
-	border-radius: 50px;
-	transition: height .5s ease;
-}
+	color: var(--color-primary);
+	text-decoration: none;
 
-#ms-download:checked ~ .ms-line-down-container .ms-line-down {
-	height: 10px;
-	top: -20px;
-	animation: ms-bounce .5s forwards .55s;
-}
-#ms-download:checked ~ .ms-line-down-container .ms-line-down:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: -94px;
-	right: 0;
-	bottom: 0;
-	width: 200px;
-	height: 200px;
-	border: 10px solid transparent;
-	border-radius: 100%;
-	animation: ms-border-fill .5s forwards 3s;
-}
+	border-radius: 8px;
+	background-color: transparent;
+	backface-visibility: hidden;
+	box-shadow: inset 0 0 0 1px var(--color-primary);
 
-.ms-line-point {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	width: 58px;
-	height: 130px;
-	transition: height .15s ease .45s;
-}
+	transform: translateZ(0);
 
-#ms-download:checked ~ .ms-line-point {
-	height: 60px;
-}
+	&::after {
+		content: "";
+		pointer-events: none;
+		position: absolute;
 
-#ms-download:checked ~ .ms-line-point:before {
-	transform: rotate(90deg);
-	right: -10px;
-	animation: ms-check-right .25s forwards 3s;
-}
+		top: 0;
+		left: 0;
+		z-index: 1;
+		height: 120%;
+		width: 120%;
 
-#ms-download:checked ~ .ms-line-point:after {
-	transform: rotate(-90deg);
-	left: -10px;
-	animation: ms-check-left .25s forwards 3s;
-}
-
-.ms-line-point:before,
-.ms-line-point:after {
-	content: '';
-	position: absolute;
-	width: 10px;
-	height: 75px;
-	bottom: -10px;
-	background: #FFFFFF;
-	border-radius: 50px;
-	transition: transform .15s ease .47s, left .15s ease .47s, right .15s ease .47s;
-}
-
-.ms-line-point:before {
-	right: 0px;
-	transform: rotate(45deg);
-}
-
-.ms-line-point:after {
-	left: 0px;
-	transform: rotate(-45deg);
-}
-
-@keyframes ms-bounce {
-	0% {
-		top: -20px;
-	}
-	25% {
-		top: -250px;
-	}
-	50% {
-		top: -275px;
-	}
-	100% {
-		top: -190px;
+		border-radius: 20%;
+		background-color: var(--color-primary);
+		scale: 0 0;
+		translate: 0 140%;
+		transition: scale 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
+			translate 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 	}
 }
 
-@keyframes ms-check-left {
-	0% {
-		transform: rotate(-90deg);
-		left: -10px;
-		height: 75px;
+.c-btn__label {
+	display: inline-flex;
+	align-items: center;
+	gap: 1rem;
+
+	z-index: 2;
+	font-size: 1.2rem;
+	letter-spacing: 0.025em;
+
+	transition: color 0.32s ease-in-out;
+}
+
+.c-btn:hover {
+	span {
+		color: var(--color-dark);
 	}
-	100% {
-		transform: rotate(-45deg);
-		left: 0px;
-		height: 45px;
+
+	&:after {
+		scale: 1.5 1.5;
+		translate: 0 0;
+
+		border-radius: 50%;
 	}
 }
 
-@keyframes ms-check-right {
-	0% {
-		transform: rotate(90deg);
-		right: -10px;
-		height: 75px;
-		bottom: -10px;
-	}
-	100% {
-		transform: rotate(45deg);
-		right: 10px;
-		height: 80px;
-		bottom: -15px;
-	}
-}
-
-@keyframes ms-border-fill {
-	0% {
-		border: 10px solid transparent;
-	}
-	100% {
-		border: 10px solid #FFFFFF;
-	}
-}
 
   </style>
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("ms-container").addEventListener("click", function() {
-        window.location.href = "itms-services://?action=download-manifest&url=https://irovicstefan.github.io/app.plist";
-    });
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//     document.getElementById("ms-container").addEventListener("click", function() {
+//         window.location.href = "itms-services://?action=download-manifest&url=https://irovicstefan.github.io/app.plist";
+//     });
+// });
 </script>
 	
 </head>
 <body>
-<div class="container-fluid">
-	<div class="row">
-		<div id="ms-container">
-			<label for="ms-download">
-				<div class="ms-content">
-					<div class="ms-content-inside">
-						<input type="checkbox" id="ms-download" />
-						<div class="ms-line-down-container">
-							<div class="ms-line-down"></div>
-						</div>
-						<div class="ms-line-point"></div>
-					</div>
-				</div>
-			</label>
-		</div>
+<div class="wrapper"><a href="itms-services://?action=download-manifest&url=https://irovicstefan.github.io/app.plist" class="c-btn">
+		<span class="c-btn__label">Download <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M7.50005 1.04999C7.74858 1.04999 7.95005 1.25146 7.95005 1.49999V8.41359L10.1819 6.18179C10.3576 6.00605 10.6425 6.00605 10.8182 6.18179C10.994 6.35753 10.994 6.64245 10.8182 6.81819L7.81825 9.81819C7.64251 9.99392 7.35759 9.99392 7.18185 9.81819L4.18185 6.81819C4.00611 6.64245 4.00611 6.35753 4.18185 6.18179C4.35759 6.00605 4.64251 6.00605 4.81825 6.18179L7.05005 8.41359V1.49999C7.05005 1.25146 7.25152 1.04999 7.50005 1.04999ZM2.5 10C2.77614 10 3 10.2239 3 10.5V12C3 12.5539 3.44565 13 3.99635 13H11.0012C11.5529 13 12 12.5528 12 12V10.5C12 10.2239 12.2239 10 12.5 10C12.7761 10 13 10.2239 13 10.5V12C13 13.1041 12.1062 14 11.0012 14H3.99635C2.89019 14 2 13.103 2 12V10.5C2 10.2239 2.22386 10 2.5 10Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+			</svg>
+
+	</a>
+		
 	</div>
+		<div class="titlediv">
+    <br>
+	<p class="title1">After installation make sure that:</p>
+	<p class="title2">Settings > General > Device Management > Certificate are Trusted</p>
 </div>
 </body>
 </html>
