@@ -14,13 +14,27 @@
   text-align: center;
 }
 
-.title {
-  margin-top: 50px;
+.titlediv {
+  position: absolute;
+  top: calc(50% + 60px); /* Postavlja titlediv ispod cont_centrar */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+color: #fff;
+}
+
+.title1 {
   font-family: Arial;
-font-size: 24px;
+  font-size: 12px;
   color: #fff;
 }
 
+.title2 {
+  font-family: Arial;
+  font-size: 14px;
+  color: #fff;
+}
 .cont_principal {
   position: absolute;
   width: 100%;
@@ -70,7 +84,7 @@ animation: text_anim 0.3s infinite  alternate;
 stroke-dashoffset: 800px; 
   stroke-dasharray: 0px,800px;
   transition: all 2s;
-  animation: dash_movimiento 5s 1 alternate;
+  animation: dash_movimiento 15s 1 alternate;
     -webkit-animation-timing-function: linear;   
  animation-timing-function: linear;  
 animation-delay: 2s;
@@ -232,6 +246,8 @@ opacity: 1;
 
 
 
+
+
 	</style>
 
 
@@ -252,7 +268,6 @@ function btn_active(){
 <body>
 
 <div class="cont_principal">
-<h3 class="title" >Click! on the Button</h3>
 <div class="cont_centrar" onclick=" btn_active()" >
     <p class="texto_centro">DOWNLOAD</p>
   <svg 
@@ -305,9 +320,17 @@ function btn_active(){
        style="fill:none;fill-rule:evenodd;stroke:#fff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
   </g>
 </svg>
+
+    </div>
+
+
+  <div class="titlediv">
+    <br>
+        <h4 class="title1">After installation make sure that:</h4>
+    <h4 class="title2">
+Settings > General > Device Management > Certificate are Trusted</h4>
   </div>
-
-
+  
 </div>
 
 </body>
